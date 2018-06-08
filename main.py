@@ -60,14 +60,17 @@ class myMachine:
 		#-----------------
 		self.birth.end()
 
+	#---------------------
+	# main-loop ...
+	#---------------------
 	def waitInput(self):
 		time.sleep(2)
 		while 1:
 			try:
 				print("> " + self.birth.name + ": Ihre Eingabe bitte")
 				line = sys.stdin.readline()
+				line = line.rstrip('\n')
 				self.birth.lexicon.get(line)
-				self.birth.lexicon.get("katzen")
 			except KeyboardInterrupt:
 				break
 

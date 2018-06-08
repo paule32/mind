@@ -21,6 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #---------------------------------------------------------------------------------
+import string
 
 class AILexicon:
 	def __init__(self):
@@ -40,8 +41,24 @@ class AILexicon:
 			"fisch" 	: activator["fisch"]
 		}
 
-		print("==> %s" % str(words.get(str(name),str("nicht in der Liste"))))
-#		print("==> %s", str(word))
+		textlist = [word.strip(string.punctuation) for word in name.split()]
+		textlist_len = len(textlist)
+
+		count = 0
+		while 1:
+			if count == textlist_len:
+				break
+			else:
+				text = textlist[count]
+				print("=> %s" % text)
+				txt = words.get(text,"nicht in der Liste")
+				if txt == "nicht in der Liste":
+					pass
+				else:
+					print(":> %s" % txt[0])
+
+			count += 1
+
 
 	def lex(self,lex):
 		lex = self.get(lex)
