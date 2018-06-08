@@ -1,0 +1,43 @@
+#!/usr/bin/python
+
+import os
+import subprocess
+import sys
+import time;
+
+API_URL = "http://translate.google.com/translate_tts?ie=UTF-8&tl=de"
+
+FNULL = open(os.devnull, 'w')
+print "hallo"
+os.system("echo > o.mp3")
+
+subprocess.call(["wget", "-q", "-U", "Mozilla", "-O", "output.mp3", API_URL+"&q="+"hallo")
+os.system("cat o.mp3 output.mp3 > t.mp3")
+os.system("cat t.mp3 > o.mp3")
+
+os.system("rm output.mp3")
+os.system("rm t.mp3")
+subprocess.call(["mplayer", "o.mp3"], stdout = FNULL, stderr = FNULL)
+
+
+tmpday  = time.strftime("%a")
+if tmpday = "Mon":
+    birthday = "Monday"
+    break
+if tmpday = "Tur":
+    birthday = "Dienstag"
+    break
+if tmpday = "Wed":
+    birthday = "Mittwoch"
+    break;
+if tmpday = "Thu":
+    birthday = "Donnerstag"
+    break
+if tmpday = "Fri":
+    birthday = "Freitag"
+    break
+if tmpday = "Sat":
+    birthday = "Samstag"
+    break
+if tmpday = "Sun"
+    birthday = "Sonntag"
