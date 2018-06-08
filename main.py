@@ -43,8 +43,8 @@ import time
 class myMachine:
 	def __init__(self,name):
 		self.birth = AIBirth(name)
-		self.birth.speaker = AISpeaker()
-		self.birth.lexicon = AILexicon()
+		self.birth.speaker = AISpeaker(self.birth)
+		self.birth.lexicon = AILexicon(self.birth.speaker)
 
 	def start(self):
 		self.birth.start()
@@ -68,15 +68,23 @@ class myMachine:
 		while 1:
 			try:
 				print("> " + self.birth.name + ": Ihre Eingabe bitte")
-				line = sys.stdin.readline()
-				line = line.rstrip('\n')
-				self.birth.lexicon.get(line)
+
+				while 1:
+					prompt = input("> ")
+					print(prompt)
+					prompt = prompt.rstrip('\n')
+					break;
+
+				if prompt == "exit":
+					break;
+
+				self.birth.lexicon.get(prompt)
 			except KeyboardInterrupt:
-				break
+				break;
 
 			if not line:
-				line = "test"
-				break
+				print("> ",self.birth.name +
+				": ich habe Ihre Eingabe nicht verstanden, bitte wiederholen Sie")
 
 			print(line)
 
