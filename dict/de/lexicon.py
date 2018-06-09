@@ -24,40 +24,46 @@
 import string
 
 class AILexicon:
-	def __init__(self):
-		pass
+	def __init__(self,parent):
+		self.errors = 0
+		self.parent = parent
 
 	def get_nome(self,name):
 		return name;
 
+	def getCall(self,name):
+		for word in name:
+			vtxt = self.words.get(word,"NIL")
+			if vtxt == "NIL":
+				#self.errors = 1
+				pass
+			else:
+				print("===> ",vtxt)
+				self.errors = 0
+
 	def get(self,name):
-		activator = {
+		self.activator = {
 			"fisch" 	: ("fangen","moegen","essen")
 		}
 		#
-		words = {
+		self.words = {
 			"katzen"	: ("essen","lieben","hassen","brauchen"),
 			"essen"		: ("kaefer","fisch","voegel"),
-			"fisch" 	: activator["fisch"]
+			"fisch" 	: ("aal","forelle")
 		}
 
 		textlist = [word.strip(string.punctuation) for word in name.split()]
-		textlist_len = len(textlist)
-
-		count = 0
-		while 1:
-			if count == textlist_len:
-				break
+		for text in textlist:
+			txt = self.words.get(text,"NIL")
+			if txt == "NIL":
+				#self.errors = 1
+				pass
 			else:
-				text = textlist[count]
-				print("=> %s" % text)
-				txt = words.get(text,"nicht in der Liste")
-				if txt == "nicht in der Liste":
-					pass
-				else:
-					print(":> %s" % txt[0])
+				if len(textlist) > 0:
+					self.getCall(txt)
 
-			count += 1
+			if self.errors == 1:
+				print("-[ %d ]- Fehler aufgetretten !!!" % self.errors)
 
 
 	def lex(self,lex):

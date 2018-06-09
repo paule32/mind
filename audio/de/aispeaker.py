@@ -24,5 +24,8 @@
 import subprocess
 
 class AISpeaker:
+	def __init__(self,parent):
+		self.parent = parent
+
 	def say(self,text):
 		subprocess.Popen(['./trans.sh', '-b', '-s', 'de', '-t', 'de', '-p', text])

@@ -68,7 +68,6 @@ class myMachine:
 		while 1:
 			try:
 				print("> " + self.birth.name + ": Ihre Eingabe bitte")
-
 				while 1:
 					prompt = input("> ")
 					print(prompt)
@@ -82,11 +81,9 @@ class myMachine:
 			except KeyboardInterrupt:
 				break;
 
-			if not line:
-				print("> ",self.birth.name +
-				": ich habe Ihre Eingabe nicht verstanden, bitte wiederholen Sie")
-
-			print(line)
+			if not prompt:
+				print("> "+self.birth.name +
+				": eingabe falsch !!!")
 
 #---------------------------------------------------
 # "main" entry point function ...
