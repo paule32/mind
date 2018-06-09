@@ -26,6 +26,7 @@ import string
 class AILexicon:
 	def __init__(self,parent):
 		self.errors = 0
+		self.count  = 0
 		self.parent = parent
 
 	def get_nome(self,name):
@@ -33,13 +34,10 @@ class AILexicon:
 
 	def getCall(self,name):
 		for word in name:
-			vtxt = self.words.get(word,"NIL")
-			if vtxt == "NIL":
-				#self.errors = 1
-				pass
-			else:
-				print("===> ",vtxt)
-				self.errors = 0
+			vtxt = self.words.get(word,"nil")
+			if vtxt == "nil":
+				#self.errors += 1
+				break
 
 	def get(self,name):
 		self.activator = {
@@ -53,17 +51,30 @@ class AILexicon:
 		}
 
 		textlist = [word.strip(string.punctuation) for word in name.split()]
+		self.count  = 0
+		self.errors = 0
+
 		for text in textlist:
-			txt = self.words.get(text,"NIL")
-			if txt == "NIL":
-				#self.errors = 1
-				pass
+			txt = self.words.get(text,"nil")
+			if txt == "nil":
+				print("> "+self.parent.parent.name+": nil")
+				self.errors += 1
+				break
 			else:
 				if len(textlist) > 0:
+					if (self.count) == len(textlist):
+						break
+
+					print("==>",txt)
+
+					self.count += 1
 					self.getCall(txt)
 
-			if self.errors == 1:
+			if self.errors > 0:
 				print("-[ %d ]- Fehler aufgetretten !!!" % self.errors)
+			elif self.errors < 1:
+				self.errors = 0
+				print("> "+self.parent.parent.name+": satz is ok.")
 
 
 	def lex(self,lex):
