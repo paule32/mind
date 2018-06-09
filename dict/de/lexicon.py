@@ -47,6 +47,7 @@ class AILexicon:
 		#
 		self.words = {
 			"katzen"	: ("essen","lieben","hassen","brauchen"),
+			"menschen"	: ("essen"),
 			"essen"		: ("kaefer","fisch","voegel"),
 			"fisch" 	: ("aal","forelle")
 		}
@@ -59,6 +60,9 @@ class AILexicon:
 		self.wrtext = textlist[self.count]
 
 		while len(textlist):
+			if (self.count+1) >= len(textlist):
+				break
+
 			txt = self.words.get(self.wrtext,"nil")
 			if txt == "nil":
 				print("> "+self.parent.parent.name+": "+
@@ -68,38 +72,46 @@ class AILexicon:
 			else:
 				print("==>",self.wrtext)
 				print("-->",txt)
-
-				if len(textlist) == 1:
-					break
-
-				self.count = 0
+				self.tmplen = len(txt)
 				while len(txt):
+					if self.count >= len(textlist):
+						break;
+
 					self.count += 1
 					text = textlist[self.count]
-					if text in txt == False:
+
+					if (text in txt) == False:
 						print("> "+self.parent.parent.name+": "+
 						text+": niL")
 						self.errors += 1
 						break;
 					else:
-						if text in self.activator == False:
-							print("> "+
-							self.parent.parent.name+": "+
-							"nichts näher bestimmt")
-							self.errors += 1
-							break;
+						print("===>",text)
+						if (text in self.activator) == False:
+							self.count += 1
+							if self.count >= len(textlist):
+								break
+							text = textlist[self.count]
+							if (text in self.activator) == False:
+								print("> "+
+								self.parent.parent.name+": "+
+								"not solveable")
+								self.errors += 1
+								break
+							else:
+								print("xx>",text)
+								break
 						else:
 							print("oo>",text)
 							break
+					break
 				break
 
 
-		#if self.errors > 0:
-		#	print("-[ %d ]- Fehler aufgetretten !!!" % self.errors)
-#
-#		if self.errors < 1 and self.count == len(textlist):
-#			self.errors = 0
-#			print("> "+self.parent.parent.name+": satz is ok.")
+		if self.errors > 0:
+			print("-=[ %d ]=- Fehler !" % self.errors)
+		else:
+			print("> "+self.parent.parent.name+": satz is ok.")
 
 
 	def lex(self,lex):
