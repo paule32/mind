@@ -41,7 +41,7 @@ class AILexicon:
 
 	def get(self,name):
 		self.activator = {
-			"fisch" 	: ("fangen","moegen","essen")
+			"fisch" 	: ("fangen","moegen","essen","lieben")
 		}
 		#
 		self.words = {
@@ -72,9 +72,10 @@ class AILexicon:
 
 			if self.errors > 0:
 				print("-[ %d ]- Fehler aufgetretten !!!" % self.errors)
-			elif self.errors < 1:
-				self.errors = 0
-				print("> "+self.parent.parent.name+": satz is ok.")
+
+		if self.errors < 1 and self.count == len(textlist):
+			self.errors = 0
+			print("> "+self.parent.parent.name+": satz is ok.")
 
 
 	def lex(self,lex):
