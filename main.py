@@ -32,8 +32,11 @@ from dict .de.lexicon   import AILexicon
 #----------------------------------------------------
 # some collection of util functions, and imports ...
 #----------------------------------------------------
+import string
 import sys
 import time
+
+from goto import with_goto	# "goto" command impl
 
 #----------------------------------------------------
 # create an instance of a seperate machine.

@@ -27,6 +27,7 @@ class AILexicon:
 	def __init__(self,parent):
 		self.errors = 0
 		self.count  = 0
+		self.wrtext = ""
 		self.parent = parent
 
 	def get_nome(self,name):
@@ -51,31 +52,54 @@ class AILexicon:
 		}
 
 		textlist = [word.strip(string.punctuation) for word in name.split()]
+		print("text: "+str(textlist))
+
 		self.count  = 0
 		self.errors = 0
+		self.wrtext = textlist[self.count]
 
-		for text in textlist:
-			txt = self.words.get(text,"nil")
+		while len(textlist):
+			txt = self.words.get(self.wrtext,"nil")
 			if txt == "nil":
-				print("> "+self.parent.parent.name+": nil")
+				print("> "+self.parent.parent.name+": "+
+				self.wrtext+": nil")
 				self.errors += 1
-				break
+				break;
 			else:
-				if len(textlist) > 0:
-					if (self.count) == len(textlist):
-						break
+				print("==>",self.wrtext)
+				print("-->",txt)
 
-					print("==>",txt)
+				if len(textlist) == 1:
+					break
 
+				self.count = 0
+				while len(txt):
 					self.count += 1
-					self.getCall(txt)
+					text = textlist[self.count]
+					if text in txt == False:
+						print("> "+self.parent.parent.name+": "+
+						text+": niL")
+						self.errors += 1
+						break;
+					else:
+						if text in self.activator == False:
+							print("> "+
+							self.parent.parent.name+": "+
+							"nichts näher bestimmt")
+							self.errors += 1
+							break;
+						else:
+							print("oo>",text)
+							break
+				break
 
-			if self.errors > 0:
-				print("-[ %d ]- Fehler aufgetretten !!!" % self.errors)
 
-		if self.errors < 1 and self.count == len(textlist):
-			self.errors = 0
-			print("> "+self.parent.parent.name+": satz is ok.")
+		#if self.errors > 0:
+		#	print("-[ %d ]- Fehler aufgetretten !!!" % self.errors)
+#
+#		if self.errors < 1 and self.count == len(textlist):
+#			self.errors = 0
+#			print("> "+self.parent.parent.name+": satz is ok.")
 
 
 	def lex(self,lex):
