@@ -1,0 +1,37 @@
+{
+	"t0001":
+	{
+		"de": "Ihre Eingabe bitte sehr",
+		"en": "Your input please"
+	},
+	"t0002":
+	{
+		"de": "unerwarteter Fehler:",
+		"en": "unexpected error:"
+	},
+	"t0003":
+	{
+		"de": "BS fehler",
+		"en": "OS error"
+	},
+	"t0004":
+	{
+		"de": "eingabe falsch",
+		"en": "input not valid"
+	},
+	"t0005":
+	{
+		"de": "es werden weitere informationen benötigt",
+		"en": "more information data is requiered"
+	},
+	"t0006":
+	{
+		"de": "die erstellung von",
+		"en": "the creation of"
+	},
+	"t0007":
+	{
+		"en": "wird vorbereitet ...",
+		"de": "will initiate ..."
+	}
+}

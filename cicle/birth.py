@@ -22,10 +22,23 @@
 # SOFTWARE.
 #---------------------------------------------------------------------------------
 import time
+import misc.config
+
+from misc.json import AIJson
 
 class AIBirth:
-	def __init__(self,name="robot"):
-		print("die Erstellung von", name, "wird vorbereitet...")
+	def __init__(
+		self,
+		name = misc.config.project["machine"]["0"],
+		lang = misc.config.project["lang"]):
+
+		self.lang = AIJson("./lang/translfile.json")
+		self.gnal = lang
+
+		print(
+		self.lang.trans("t0006"),name,
+		self.lang.trans("t0007"))
+
 		self.timefmt = True     # 24/12 time format
 		self.name = name        # name of the machine
 		self.speaker = 0        # speaker/translator voice

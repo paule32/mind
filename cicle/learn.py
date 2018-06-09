@@ -22,6 +22,7 @@
 # SOFTWARE.
 #---------------------------------------------------------------------------------
 import string
+import json
 
 class AILexicon:
 	def __init__(self,parent):
@@ -30,17 +31,11 @@ class AILexicon:
 		self.wrtext = ""
 		self.parent = parent
 
-	def get_nome(self,name):
-		return name;
-
-	def getCall(self,name):
-		for word in name:
-			vtxt = self.words.get(word,"nil")
-			if vtxt == "nil":
-				#self.errors += 1
-				break
-
 	def get(self,name):
+		with open("./lang/de/activator.json","r") as f1:
+			actArray = json.load(f1)
+		print(actArray)
+
 		self.activator = {
 			"fisch" 	: ("fangen","moegen","essen","lieben")
 		}
@@ -54,6 +49,12 @@ class AILexicon:
 
 		textlist = [word.strip(string.punctuation) for word in name.split()]
 		print("text: "+str(textlist))
+
+		if len(textlist) <= 1:
+			print("> "+
+			self.parent.parent.name+": "+
+			self.parent.parent.lang.trans("t0005"))
+			return;
 
 		self.count  = 0
 		self.errors = 0

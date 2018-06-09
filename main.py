@@ -22,12 +22,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+# ------------------------------------------------------
+# the next import is fo the settings, that this project
+# use. You should consult it, before you go# step wider
+# and begin to change some parts of this software:
+# see license !!!
+# ------------------------------------------------------
+import misc.config
+
+
+from misc.json import AIJson
 #----------------------------------------------------
-# these settings are for german developers (me :) ...
-#----------------------------------------------------
-from lang .de.birth     import AIBirth
-from audio.de.aispeaker import AISpeaker
-from dict .de.lexicon   import AILexicon
+from cicle.birth  import AIBirth
+from cicle.voice  import AISpeaker
+from cicle.learn  import AILexicon
 
 #----------------------------------------------------
 # some collection of util functions, and imports ...
@@ -36,16 +44,15 @@ import string
 import sys
 import time
 
-from goto import with_goto	# "goto" command impl
-
 #----------------------------------------------------
 # create an instance of a seperate machine.
 # I give the machine a default name in main() where
 # constructor is written ...
 #----------------------------------------------------
 class myMachine:
-	def __init__(self,name):
-		self.birth = AIBirth(name)
+	def __init__(self,name,lang):
+		#---------------------------------------------------
+		self.birth = AIBirth(name,lang)
 		self.birth.speaker = AISpeaker(self.birth)
 		self.birth.lexicon = AILexicon(self.birth.speaker)
 
@@ -70,7 +77,8 @@ class myMachine:
 		time.sleep(2)
 		while 1:
 			try:
-				print("> " + self.birth.name + ": Ihre Eingabe bitte")
+				print("> " + self.birth.name + ": "+
+				self.birth.lang.trans("t0001"))
 				while 1:
 					prompt = input("> ")
 					print(prompt)
@@ -86,13 +94,15 @@ class myMachine:
 
 			if not prompt:
 				print("> "+self.birth.name +
-				": eingabe falsch !!!")
+				": "+self.birth.lang.trans("t0004")+" !")
 
 #---------------------------------------------------
 # "main" entry point function ...
 #---------------------------------------------------
 def main():
-	myki = myMachine("KC-85")
+	myki = myMachine(
+	misc.config.project["machine"]["0"],
+	misc.config.project["lang"])
 	myki.start()
 
 if __name__  == "__main__":

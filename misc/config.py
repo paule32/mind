@@ -1,4 +1,4 @@
-#---------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # MIT License
 #
 # Copyright (c) 2018 Jens Kallup
@@ -20,12 +20,28 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-#---------------------------------------------------------------------------------
-import subprocess
+# --------------------------------------------------------------------------------
 
-class AISpeaker:
-	def __init__(self,parent):
-		self.parent = parent
+# ---------------------------------------------------------
+# the default settings are for german developers (me :) ...
+# please select your language:
+# 
+# "de" = german
+# "en" = english
+# ---------------------------------------------------------
+project = {
+        "lang"   : "de",
+        "author" : "Jens Kallup",
+        "version": "0.0.1",
 
-	def say(self,text):
-		subprocess.Popen(['./trans.sh', '-b', '-s', 'de', '-t', 'de', '-p', text])
+	# --------------------------------------
+	# you can customize the machine name ...
+	# --------------------------------------
+	"machine": {
+		"0": "KC-85",   # the world famous computer :-)
+		"1": "Robot",
+		"2": "Leika"
+	}
+}
+
+list(project)

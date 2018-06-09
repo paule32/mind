@@ -1,4 +1,4 @@
-#--------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------
 # MIT License
 #
 # Copyright (c) 2018 Jens Kallup
@@ -21,44 +21,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #---------------------------------------------------------------------------------
+import subprocess
+import misc.config
 
-class AILexicon:
-	def __init__(self):
-		pass
+class AISpeaker:
+	def __init__(self,parent):
+		self.parent = parent
 
-	def get_nome(self,name):
-		return name;
-
-	def get(self,name):
-		activator = {
-			"fisch" 	: ("fangen","moegen","essen")
-		}
-		#
-		words = {
-			"katzen"	: ("essen","lieben","hassen","brauchen"),
-			"essen"		: ("kaefer","fisch","voegel"),
-			"fisch" 	: activator["fisch"]
-		}
-
-		for word in words:
-			if word == name:
-
-
-		personObject = [0, "1. Person", "Nomitativ"] ; personListe.append(personObject)
-		personObject = [1, "2. Person", "Dativ"]     ; personListe.append(personObject)
-
-		lexlist = [
-			"ich", personObject[0]
-		]
-
-		idx = 0
-		print("===> " + lexlist[idx+1])
-
-		while idx  < lexlist.__len__():
-			if lexlist[idx] == name:
-				print ("Found: ", name)
-
-			idx += 1
-
-	def lex(self,lex):
-		lex = self.get(lex)
+	def say(self,text):
+		subprocess.Popen(['./misc/trans.sh',
+		'-b', '-s',	misc.config.project["lang"],
+		'-t',		misc.config.project["lang"],
+		'-p', text])
