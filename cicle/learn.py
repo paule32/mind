@@ -31,20 +31,29 @@ class AILexicon:
 		self.wrtext = ""
 		self.parent = parent
 
-	def get(self,name):
-		with open("./lang/de/activator.json","r") as f1:
-			actArray = json.load(f1)
-		print(actArray)
+	def getWeather(self):
+		print("das wetter")
 
+	def get(self,name):
+		#with open("./lang/de/activator.json","r") as f1:
+		#	actArray = json.load(f1)
+		#print(actArray)
+
+		self.city = [
+			"london"
+		]
 		self.activator = {
-			"fisch" 	: ("fangen","moegen","essen","lieben")
+			"fisch" 	: ("fangen","moegen","essen","lieben"),
+			"wetter"	: {"ist": self.city}
 		}
 		#
 		self.words = {
 			"katzen"	: ("essen","lieben","hassen","brauchen"),
 			"menschen"	: ("essen"),
 			"essen"		: ("kaefer","fisch","voegel"),
-			"fisch" 	: ("aal","forelle")
+			"fisch" 	: ("aal","forelle"),
+			"london"	: ("stadt"),
+			"wie"		: ("ist", "wird")
 		}
 
 		textlist = [word.strip(string.punctuation) for word in name.split()]
@@ -100,7 +109,12 @@ class AILexicon:
 								self.errors += 1
 								break
 							else:
-								print("xx>",text)
+								#print("xx>",text)
+								self.count += 1
+								if self.count >= len(textlist):
+									break
+								text = textlist[self.count]
+								if (text in self.
 								break
 						else:
 							print("oo>",text)
