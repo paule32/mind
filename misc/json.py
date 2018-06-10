@@ -39,11 +39,11 @@ class AIJson:
 		except TypeError as err:
 			print("type error")
 		except OSError as err:
-			print(self.data["t0003"][misc.confgi.project["lang"]]+
+			print(self.data["t0003"][misc.config.project["lang"]]+
 			": {0}".format(err))
 		except:
-			print(self.data["t0002"][misc.config.project["lang"]],
-			sys.exc_info()[0])
+			errtext = self.data["t0002"][misc.config.project["lang"]]
+			print(errtext)
 			raise
 
 	def trans(self,name):

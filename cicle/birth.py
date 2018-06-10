@@ -33,7 +33,7 @@ class AIBirth:
 		lang = misc.config.project["lang"]):
 
 		self.lang = AIJson("./lang/translfile.json")
-		self.gnal = lang
+		self.nspk = lang
 
 		print(
 		self.lang.trans("t0006"),name,
@@ -53,19 +53,19 @@ class AIBirth:
 	def start(self):
 		tmpday  = time.strftime("%a")
 		if tmpday == "Mon":
-			self.day = "Montag"
+			self.day = self.lang.trans("t0010")
 		elif tmpday == "Tur":
-			self.day = "Dienstag"
+			self.day = self.lang.trans("t0011")
 		elif tmpday == "Wed":
-			self.day = "Mittwoch"
+			self.day = self.lang.trans("t0012")
 		elif tmpday == "Thu":
-			self.day = "Donnerstag"
+			self.day = self.lang.trans("t0013")
 		elif tmpday == "Fri":
-			self.day = "Freitag"
+			self.day = self.lang.trans("t0014")
 		elif tmpday == "Sat":
-			self.day = "Samstag"
+			self.day = self.lang.trans("t0015")
 		elif tmpday == "Sun":
-			self.day = "Sonntag"
+			self.day = self.lang.trans("t0016")
 
 		if self.timefmt == True:
 			self.hour = time.strftime("%H")
@@ -78,11 +78,16 @@ class AIBirth:
 		self.start_ok()
 
 	def status(self):
-		print( "Erstell-Tag    : ", self.day)
-		print( "Erstell-Zeit(h): ", self.hour)
-		print( "Erstell-Zeit(m): ", self.minute)
-		print( "Erstell-Zeit(s): ", self.second)
-		print( "Name           : ", self.name)
+		txt0 = "t0020"
+
+		print( self.lang.trans(txt0) + "-" + self.lang.trans("t0021") + ": " + self.day)
+		print( self.lang.trans(txt0) + "-" + self.lang.trans("t0022") + ": " + self.hour)
+		print( self.lang.trans(txt0) + "-" + self.lang.trans("t0023") + ": " + self.minute)
+		print( self.lang.trans(txt0) + "-" + self.lang.trans("t0024") + ": " + self.second)
+		#-----------------------------------------------------------------------------------
+		print( "name           : "      + self.name)
         
 	def end(self):
-		print("Ich gehe zu Grunde, Ende... :(")
+		print(">",
+		self.name,
+		self.lang.trans("t9999"))

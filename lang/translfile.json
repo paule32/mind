@@ -31,7 +31,75 @@
 	},
 	"t0007":
 	{
-		"en": "wird vorbereitet ...",
-		"de": "will initiate ..."
+		"de": "wird vorbereitet ...",
+		"en": "will initiate ..."
+	},
+
+	"t0010":
+	{
+		"de": "Montag",
+		"en": "Monday"
+	},
+	"t0011":
+	{
+		"de": "Dienstag",
+		"en": "Thursday"
+	},
+	"t0012":
+	{
+		"de": "Mittwoch",
+		"en": "Wendsday"
+	},
+	"t0013":
+	{
+		"de": "Donnerstag",
+		"en": "Thursday"
+	},
+	"t0014":
+	{
+		"de": "Freitag",
+		"en": "Friday"
+	},
+	"t0015":
+	{
+		"de": "Samstag",
+		"en": "Saturday"
+	},
+	"t0016":
+	{
+		"de": "Sonntag",
+		"en": "Sunnday"
+	},
+
+	"t0020":
+	{
+		"de": "erstellt",
+		"en": "assembled"
+	},
+	"t0021":
+	{
+		"de": "tag",
+		"en": "day"
+	},
+	"t0022":
+	{
+		"de": "zeit(h)",
+		"en": "at(h)"
+	},
+	"t0023":
+	{
+		"de": "zeit(m)",
+		"en": "at(m)"
+	},
+	"t0024":
+	{
+		"de": "zeit(s)",
+		"en": "at(s)"
+	},
+
+	"t9999":
+	{
+		"de": "ich sterbe :(",
+		"en": "i die :("
 	}
 }
